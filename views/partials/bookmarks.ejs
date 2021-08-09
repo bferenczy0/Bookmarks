@@ -1,0 +1,23 @@
+<div>
+<% bookmarks.map ((bookmarks,index) => { %>
+    <p></p>
+    <span id='<%= `url${index + 1}` %>'>url: <%= bookmarks.url %></span><br>
+    <% bookmarks.Comments.map((comment,index) => { %>
+        <p> <%= comment.text %></p>
+    <% }) %>
+    <div id="bookmarks-<%= index %>-comments">
+        <form action="/<%= bookmarks.id %>/comments" method="post">
+          <input id="bookmarks-<%= index %>-comment-textbox" type="text" name="text" placeholder="Comment">
+          <input id="bookmarks-<%= index %>-comment-submit"type="submit" value="Add Comment">
+        </form>
+    </div>
+    
+    <form action='/<%=bookmarks.id%>?_method=DELETE' method='post'>
+        <button id='<%=`delete-button-${index + 1}` %>' type="submit" >Delete</button>
+    </form>
+    <form action='/update-button/<%=bookmarks.id%>' method='post'>
+        <input id='<%=`update-button-${index +1 }` %>' type='submit' value='Update'>
+    </form>
+<% }) %>
+</div>
+
